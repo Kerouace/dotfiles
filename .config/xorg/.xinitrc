@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# xrandr --auto
+
+[ -f "$XDG_CONFIG_HOME/xorg/xprofile" ] && . "$XDG_CONFIG_HOME/xorg/xprofile" # global autostart
+[ -f "$XDG_CONFIG_HOME/xorg/xlocal" ] && . "$XDG_CONFIG_HOME/xorg/xlocal" # local autostart
+[ -f "$XDG_CONFIG_HOME/xorg/xdefaults" ] && xrdb -merge "$XDG_CONFIG_HOME/xorg/xdefaults" # global resources
+[ -f "$XDG_CONFIG_HOME/xorg/xpcspec" ] && xrdb -merge "$XDG_CONFIG_HOME/xorg/xpcspec" # local resources
+
+
+csum=""
+new_csum=$(sha1sum $(which dwm))
+while true
+do
+    if [ "$csum" != "$new_csum" ]
+    then
+        csum=$new_csum
+        dwm
+    else
+        exit 0
+    fi
+    new_csum=$(sha1sum $(which dwm))
+    sleep 0.5
+done

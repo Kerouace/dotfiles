@@ -1,0 +1,108 @@
+#!/bin/zsh
+
+# profile file. Runs on login. Environmental variables are set here.
+
+# Adds `~/.local/bin` to $PATH
+#export PATH="${PATH}:$(du "${HOME}/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+
+
+# Add flatpak to path
+export PATH="/var/lib/flatpak/exports/bin:${PATH}"
+
+unsetopt PROMPT_SP
+
+# Default programs:
+export AUDIO="mpv"
+export BROWSER="firefox"
+export EDITOR="nvim"
+export FILE="vifmrun"
+export IMAGE="nsxiv"
+export MUSIC="ncmpcpp"
+export READER="zathura"
+export STATUSBAR="dwmblocks"
+export TABLE="sc-im"
+export TERMINAL="st"
+export TERMINAL_PROG="st"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# XDG:
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# SOFTWARE
+export XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
+
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
+export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
+export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
+export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GRADLE_USER_HOME="${XDG_CONFIG_HOME}/gradle"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export HISTFILE="$XDG_DATA_HOME/history"
+export HISTSIZE=10000 # TODO: check if somewhere else set
+export SAVEHIST=10000 # TODO: check if somewhere else set
+export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+export KODI_DATA="$XDG_DATA_HOME/kodi"
+export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export NUGET_PACKAGES="${XDG_CACHE_HOME}/nugetpackages"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export TMUX_TMPDIR="${XDG_CACHE_HOME}/tmux"   # TODO: maybe XDG_RUNTIME_DIR?
+export UNISON="$XDG_DATA_HOME/unison"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# less
+export LESSHISTFILE="-"
+# Foreground: 30 - black; 31 - red; 32 - green; 33 - yellow; 34 - blue; 35 - magenta; 36 - cyan; 37 - white
+# Background: 40 - black; 41 - red; 42 - green; 43 - yellow; 44 - blue; 45 - magenta; 46 - cyan; 47 - white
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"		# begin blinking (idk); default 1:31
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"		# begin bold; default 1;36
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"			# end mode
+export LESS_TERMCAP_so="$(printf '%b' '[01;46;31m')"	# begin standout-mode - info box; default 01;44;33
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"			# end standout-mode
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"		# begin underline; default 1;32
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"			# end underline
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+
+# Programming language
+# rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+# golang
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="${GOPATH}/bin"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+# python
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+# java
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export JDTLS_HOME="/usr/share/java/jdtls"
+
+# external programs
+export OPENAUDIBLE_HOME="${HOME}/documents/openaudible"
+export PROLEAD=$HOME/git/work/PROLEAD/
+
+# Other program settings:
+export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
+export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
+export BAT_THEME="gruvbox-dark"
+export DICS="/usr/share/stardict/dic/"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
+export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
+export ZEIT_DB="$XDG_DATA_HOME/zeit.db" # Database of zeit time tracking tool
+
+[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
+
+# Start graphical server on user's current tty if not already running.
+#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"

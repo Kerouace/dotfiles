@@ -1,0 +1,29 @@
+#!/bin/bash
+# copying tex templates
+
+latexdir=~/code/main/latextemplates/
+
+[ -z "$2" ] && echo "missing argument: filename (no ending)" && return 1
+
+articletemp=${latexdir}latex_article/article.tex
+beamertemp=${latexdir}latex_beamer/beamer.tex
+exercisetemp=${latexdir}latex_exercise_header/header.tex
+handouttemp=${latexdir}latex_handout/handout.tex
+
+case "$1" in
+	a*) cp "$articletemp" $2.tex ;;
+	b*) cp "$beamertemp" $2.tex ;;
+	e*) cp "$exercisetemp" $2.tex ;;
+	h*) cp "$handouttemp" $2.tex ;;
+	*) cat << EOF
+
+Allowed options
+	article NAME 		get article-template with given NAME
+	beamer NAME 		get beamer-template with given NAME
+	exercise NAME 		get exercise-template with given NAME
+	handout NAME 		get handout-template with given NAME
+
+All of these commands can be truncated,
+i.e. \`textemp a\` for \`textemp article`\.
+EOF
+esac

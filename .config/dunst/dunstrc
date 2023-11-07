@@ -1,0 +1,84 @@
+[global]
+    monitor = 1
+    follow = none
+    geometry = "375x20-28+36"
+    indicate_hidden = yes
+    shrink = no
+    transparency = 0
+    notification_height = 0
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 10
+    frame_width = 2
+    corner_radius = 0
+
+    frame_color = "#555555"
+    separator_color = "#555555"
+    sort = yes
+    idle_threshold = 300
+    mouse_right_click = close_all
+
+    font = Monospace 10
+    line_height = 0
+
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = false
+    hide_duplicate_count = true
+    show_indicators = yes
+
+    icon_position = left
+    max_icon_size = 64
+
+    sticky_history = yes
+    history_length = 50
+
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    startup_notification = false
+    force_xinerama = false
+    verbosity = mesg
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#282828"
+    foreground = "#eeeeee"
+    timeout = 10
+
+[urgency_normal]
+    background = "#282828"
+    foreground = "#eeeeee"
+    timeout = 15
+
+[urgency_critical]
+    background = "#282828"
+    foreground = "#eeeeee"
+    frame_color = "#8c3d45"
+    timeout = 0
+
+[sound_normal]
+    msg_urgency = "normal"
+    script = ~/.config/dunst/alert_normal.sh
+
+[sound_critical]
+    msg_urgency = "critical"
+    script = ~/.config/dunst/alert_high.sh
+
+[dnd_normal]
+    msg_urgency = "normal"
+    skip_display = true
+
+[dnd_low]
+    msg_urgency = "low"
+    skip_display = true
