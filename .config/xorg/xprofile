@@ -11,7 +11,6 @@ dunstctl rule dnd_low disable &             # disable dnd for low urgencies
 dunstctl rule dnd_normal disable &          # disable dnd for normal urgencies
 redshift &                                  # redshift for saving your eyes
 $STATUSBAR &                                # for refreshing the statusbar
-setbg &
 syncthing &
 discord &
 keepasscs &
