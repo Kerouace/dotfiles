@@ -91,11 +91,11 @@ x11-clip-wrap-widgets paste  $paste_widgets
 
 
 
-[ -f "$XDG_CONFIG_HOME/shell/functionrc" ] && source $XDG_CONFIG_HOME/shell/functionrc
+[ -f "$XDG_CONFIG_HOME/shell/functionrc" ] && source "$XDG_CONFIG_HOME/shell/functionrc"
 
 [ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source "$XDG_CONFIG_HOME/shell/aliasrc" # Load aliases
 
-[ -f "$XDG_CONFIG_HOME/shell/suffixaliasrc" ] && source $XDG_CONFIG_HOME/shell/suffixaliasrc
+[ -f "$XDG_CONFIG_HOME/shell/suffixaliasrc" ] && source "$XDG_CONFIG_HOME/shell/suffixaliasrc"
 
 eval "$(starship init zsh)"
 
