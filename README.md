@@ -6,3 +6,4 @@
 - do i need the pinentry stuff?
 - fix the x11/xorg thing
 - use my own promt by spaceship
+- shortcuts/shellshortcuts
