@@ -11,9 +11,9 @@ bindkey '^ ' autosuggest-accept
 autoload -U colors && colors
 
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-bindkey -M menuselect '^ ' autosuggest-accept
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menu-select '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey -M menu-select '^ ' autosuggest-accept
 zstyle ':autocomplete:*' list-lines 100
 zstyle ':autocomplete:*' widget-style menu-select
 zle -A {.,}history-incremental-search-forward
