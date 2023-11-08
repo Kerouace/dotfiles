@@ -1,5 +1,5 @@
 [global]
-    monitor = 1
+    monitor = 0
     follow = none
     geometry = "375x20-28+36"
     indicate_hidden = yes
@@ -18,7 +18,7 @@
     idle_threshold = 300
     mouse_right_click = close_all
 
-    font = Monospace 10
+    font = Monospace 16
     line_height = 0
 
     markup = full
@@ -48,6 +48,12 @@
     force_xinerama = false
     verbosity = mesg
 
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
 [experimental]
     per_monitor_dpi = false
 
@@ -62,9 +68,9 @@
     timeout = 15
 
 [urgency_critical]
-    background = "#282828"
-    foreground = "#eeeeee"
-    frame_color = "#8c3d45"
+    background = "#cc2421"
+    foreground = "#ebdbb2"
+    frame_color = "#fabd2f"
     timeout = 0
 
 [sound_normal]
@@ -82,3 +88,5 @@
 [dnd_low]
     msg_urgency = "low"
     skip_display = true
+
+# vim: ft=cfg
