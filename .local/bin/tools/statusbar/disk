@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Status bar module for disk space
+# $1 should be drive mountpoint
+
+disk="/"
+[ ! -z "$1" ] && disk="$1"
+
+icon="$disk"
+
+printf "^b#282828^^c#dfdfdf^ 󰗮 ^d^ %s\n" "$(df -h "$disk" | awk ' /[0-9]/ {print $3 "/" $2}')"

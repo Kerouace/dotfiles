@@ -1,0 +1,35 @@
+#!/bin/sh
+
+acpi=$(acpi -b)
+
+if [ "$acpi" = "" ]; then
+    echo ""
+    return
+fi
+
+total=$(echo $acpi | sed 's/.*:\ //')
+
+status="$(echo $total | cut -d',' -f1)"
+capacity="$(echo $total | cut -d',' -f2 | sed 's/%//')"
+
+if [ "$status" = "Discharging" ] && [ $capacity -le 15 ] ; then
+        notify-send -u critical "Battery" "Below 15%"
+fi
+
+case "$status" in
+    "Discharging")
+        icon="^b#282828^^c#dfdfdf^  ^d^";;
+    "Not charging")
+        icon="^b#282828^^c#dfdfdf^  ^d^";;
+    "Charging")
+        icon="^b#282828^^c#dfdfdf^  ^d^";;
+    "Unknown")
+        icon="^b#282828^^c#dfdfdf^  ^d^";;
+    "Full")
+        icon="^b#282828^^c#dfdfdf^ ⚡ ^d^";;
+esac
+
+capacity=$(echo "$capacity" | sed -e 's/$//')
+capacity=$(printf %3s $capacity | tr ' ' ' ')
+
+echo "$icon $capacity%"

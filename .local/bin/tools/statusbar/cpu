@@ -1,0 +1,15 @@
+#!/bin/sh
+
+model=$(cat /proc/cpuinfo | grep "model name" | head -n1)
+
+icon="^b#282828^^c#dfdfdf^  ^d^"
+
+if printf "$model " | grep -Fqe "AMD"; then
+    temp=$(sensors | awk '/Tctl/ {print  $2}')
+else
+    temp=$(sensors | awk '/Package id 0/ {print  $4}')
+fi
+
+temp=$(printf %3s $(echo ${temp##*+} | sed "s/\..*//") | tr ' ' ' ')
+
+echo "$icon $temp°C"

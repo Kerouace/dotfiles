@@ -1,0 +1,3 @@
+#!/bin/sh
+
+date +"^b#282828^^c#dfdfdf^  ^d^ %d %b %H:%M"
