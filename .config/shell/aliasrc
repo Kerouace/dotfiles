@@ -13,13 +13,6 @@ for command in mount umount pacman su shutdown poweroff reboot ; do
 	alias $command="sudo $command"
 done; unset command
 
-# TODO: what is this doing?
-#
-se() {
-	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
-	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
-	;}
-#src() { find ~/.config/* ~/.local/bin/* -type f | fzf | xargs -r $EDITOR ;}
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \

@@ -1,0 +1,6 @@
+#/bin/zsh
+
+alias -s git='git clone'
+alias -s pdf="background $READER"
+alias -s tex="background $LATEX"
+alias -s {png,jpg,jpeg}="background $IMAGE"
