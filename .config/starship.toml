@@ -1,0 +1,13 @@
+[directory]
+style = 'bold green'
+
+[git_branch]
+style = 'bold blue'
+
+[git_commit]
+style = 'bold blue'
+only_detached = false
+
+[python]
+style = 'bold green'
+
