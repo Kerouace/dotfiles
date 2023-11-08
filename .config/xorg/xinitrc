@@ -8,6 +8,8 @@
 [ -f "$XDG_CONFIG_HOME/xorg/xpcspec" ] && xrdb -merge "$XDG_CONFIG_HOME/xorg/xpcspec" # local resources
 
 
+setbg
+
 csum=""
 new_csum=$(sha1sum $(which dwm))
 while true
