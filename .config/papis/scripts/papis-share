@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+# papis-short-help: Email a paper to my friend
+
+folder_name=/tmp/out
+
+papis -l ${PAPIS_LIB} export --folder --out ${folder_name}
+dragon-drop "${folder_name}"/*.pdf

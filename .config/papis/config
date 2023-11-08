@@ -1,0 +1,20 @@
+[tui]
+editmode = vi
+options_list.unselected_margin_style =
+
+[papers]
+dir = ~/sync/bibliography/paper
+opentool = zathura
+
+[books]
+dir = ~/sync/bibliography/books
+opentool = zathura
+
+[settings]
+default-library=papers
+file-browser = vifm
+ref-format = {doc[author_list][0][family]}{doc[year]}
+
+add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
+add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
+
