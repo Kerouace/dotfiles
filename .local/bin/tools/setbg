@@ -23,4 +23,4 @@ case "$(file --mime-type -b "$trueloc")" in
 	*) [ -z "$silent" ] && notify-send "🖼️ Error" "Not a valid image or directory." ; exit 1;;
 esac
 
-xwallpaper --zoom "$bgloc"
+xwallpaper --no-randr --tile "$bgloc"
