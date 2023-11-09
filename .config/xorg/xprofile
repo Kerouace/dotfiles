@@ -15,5 +15,4 @@ syncthing &
 discord &
 keepasscs &
 autorandr -c &                              # select monitor configuration
-setbg &
 (sleep 10 ; pkill -RTMIN+4 $STATUSBAR) &    # reload volume section of statusbar
