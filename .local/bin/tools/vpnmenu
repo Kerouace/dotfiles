@@ -2,6 +2,6 @@
 
 active=$(nmcli connection show --active | grep vpn | cut -d' ' -f1)
 [[ ! -z "$active" ]] && { prompt "disconnect from $active?"  || exit 1; }
-[[ ! -z "$active" ]] && nmcli connection down $active
+[[ ! -z "$active" ]] && nmcli connection down $active && notify-send -u normal "Disconnected from $active" && exit 1;
 conn=$(nmcli connection | grep vpn | cut -d' ' -f1 | dmenu)
-nmcli connection up $conn
+nmcli connection up $conn && notify-send -u normal "Connection to $conn established!";
