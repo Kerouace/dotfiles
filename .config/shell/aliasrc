@@ -45,7 +45,7 @@ alias \
 	z="zathura" \
 	c="clear" \
 	g="git" \
-	config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
+	config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # cd
 alias \
@@ -55,48 +55,49 @@ alias \
 	"....."="cd ../../../.." \
 	"dockervol"="cd /var/lib/docker/volumes" \
 	prev='cd ../"$(ls -F .. | grep '/' | grep -B1 -xF "${PWD##*/}/" | head -n 1)"' \
-	next='cd ../"$(ls -F .. | grep '/' | grep -A1 -xF "${PWD##*/}/" | tail -n 1)"' \
+	next='cd ../"$(ls -F .. | grep '/' | grep -A1 -xF "${PWD##*/}/" | tail -n 1)"'
 
 # dragon-drop
 alias \
 	drag="dragon-drop" \
-	drop="dragon-drop --target" \
+	drop="dragon-drop --target"
 
 # eza -> l(a/l/h), tree
 alias \
 	l="eza --color=auto --group-directories-first" \
 	la="eza -la --color=auto --group-directories-first" \
 	ll="eza -l --color=auto --group-directories-first" \
-	lh="eza -ld .?*" \ # list all hidden files
-	tree="eza --tree" \
+    # list all hidden files
+	lh="eza -ld .?*" \
+	tree="eza --tree"
 
 # get & set clipboar
 alias \
 	setclip="xclip -sel clip" \
-	getclip="xclip -out -sel clip" \
+	getclip="xclip -out -sel clip"
 
 # pacman
 alias \
 	pi="sudo pacman -S" \
-	pu="sudo pacman -Syu" \
+	pu="sudo pacman -Syu"
 
 #mutt
 alias \
 	mutt="neomutt" \
-	upmutt="mbsync -a && neomutt" \
+	upmutt="mbsync -a && neomutt"
 
 #youtube-dl
 alias \
 	yt="yt-dlp --embed-metadata -i" \
-	yta="yt-dlp -f 'bestaudio[ext=m4a]' --embed-metadata"
+	yta="yt-dlp -f 'bestaudio[ext=m4a]' --embed-metadata" \
 	ytt="yt-dlp --skip-download --write-thumbnail --embed-metadata" \
-	ytv="yt-dlp -f 'bestvide[ext=mp4]+bestaudio[ext=m4a]'"
-	yta2c="yt-dlp --external-downloader aria2c --external-downloader-args '-j 16 -x 16 -s 16 -k 2M' -f 'bestaudio/best'"
+	ytv="yt-dlp -f 'bestvide[ext=mp4]+bestaudio[ext=m4a]'" \
+	yta2c="yt-dlp --external-downloader aria2c --external-downloader-args '-j 16 -x 16 -s 16 -k 2M' -f 'bestaudio/best'" \
 	ytv2c="yt-dlp --external-downloader aria2c --external-downloader-args '-j 16 -x 16 -s 16 -k 2M' -f 'bestvideo[height>=720]+bestaudio/best'"
 
 alias \
 	lf="lfub" \
 	magit="nvim -c MagitOnly" \
 	weather="curl wttr.in" \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
+	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 	# weath="less -S ${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport" \
