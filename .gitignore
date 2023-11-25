@@ -10,3 +10,4 @@ git
 .mozilla
 .Xauthority
 nvim
+__pycache__
