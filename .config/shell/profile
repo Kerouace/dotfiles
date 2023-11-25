@@ -24,7 +24,6 @@ export STATUSBAR="dwmblocks"
 export TABLE="sc-im"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
-export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # XDG:
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -33,8 +32,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # SOFTWARE
-export XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
-
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME/ccache.config"
@@ -47,6 +44,7 @@ export HISTFILE="$XDG_DATA_HOME/history"
 export HISTSIZE=10000 # TODO: check if somewhere else set
 export SAVEHIST=10000 # TODO: check if somewhere else set
 export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+export
 export KODI_DATA="$XDG_DATA_HOME/kodi"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
@@ -59,6 +57,7 @@ export TMUX_TMPDIR="${XDG_CACHE_HOME}/tmux"   # TODO: maybe XDG_RUNTIME_DIR?
 export UNISON="$XDG_DATA_HOME/unison"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # less
@@ -98,7 +97,7 @@ export BAT_THEME="gruvbox-dark"
 export DICS="/usr/share/stardict/dic/"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
-export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export ZEIT_DB="$XDG_DATA_HOME/zeit.db" # Database of zeit time tracking tool
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && setsid shortcuts >/dev/null 2>&1
