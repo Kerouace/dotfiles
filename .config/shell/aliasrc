@@ -45,7 +45,8 @@ alias \
 	z="zathura" \
 	c="clear" \
 	g="git" \
-	config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
+    verible-setup=find . -name "*.sv" -o -name "*.svh" -o -name "*.v" | sort > verible.filelist
 
 # cd
 alias \
