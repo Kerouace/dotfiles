@@ -1,3 +1,12 @@
 keys
 sync
 git
+.npm
+.julia
+.cache
+.cert
+.pki
+.thunderbird
+.mozilla
+.Xauthority
+nvim
