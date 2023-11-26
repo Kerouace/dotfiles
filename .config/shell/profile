@@ -85,7 +85,7 @@ export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 # python
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 # java
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk"
 export JDTLS_HOME="/usr/share/java/jdtls"
 
 # external programs
