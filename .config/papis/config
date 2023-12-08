@@ -14,6 +14,7 @@ opentool = zathura
 default-library=papers
 file-browser = vifm
 ref-format = {doc[author_list][0][family]}{doc[year]}
+use-cache=True
 
 add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
 add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
