@@ -96,7 +96,8 @@ alias \
 
 alias \
 	lf="lfub" \
-	magit="nvim -c MagitOnly" \
 	weather="curl wttr.in" \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
+	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"\
+    gtkw="gtkwave -r XDG_CONFIG_HOME/gtkwave/.gtkwaverc"
+
 	# weath="less -S ${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport" \

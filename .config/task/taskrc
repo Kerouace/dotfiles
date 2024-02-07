@@ -41,3 +41,4 @@ include solarized-dark-256.theme
 #include ./gruvebox.theme
 
 news.version=2.6.0
+context.work.read=project:scarv or project:phd or project:prolead
