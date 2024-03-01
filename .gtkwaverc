@@ -1,0 +1,7 @@
+highlight_wavewindow 1
+fill_waveform 1
+clipboard_mouseover 1
+disable_mouseover 0
+
+accel "/Edit/Toggle Group Open|Close" <Control> T
+accel "/Edit/Create Group" <Control> G

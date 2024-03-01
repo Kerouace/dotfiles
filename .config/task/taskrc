@@ -42,3 +42,4 @@ include solarized-dark-256.theme
 
 news.version=2.6.0
 context.uni.read=project:hpc or project:sysperf
+context.work.read=project:scarv or project:phd or project:prolead
