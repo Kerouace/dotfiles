@@ -88,6 +88,9 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk"
 export JDTLS_HOME="/usr/share/java/jdtls"
 
+# latex
+#export LATEXMKRCSYS="$XDG_CONFIG_HOME/latexmk/latexmkrc"
+
 # external programs
 export OPENAUDIBLE_HOME="${HOME}/documents/openaudible"
 export PROLEAD=$HOME/git/work/PROLEAD/
