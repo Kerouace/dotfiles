@@ -1,2 +1,2 @@
-$compiling_cmd = "\$(papis export --all --format bibtex project:\$(yq -r '.name' project.yaml)  > bibliography.bib)"
+$compiling_cmd = "\$(papis export --all --format bibtex project:\$(yq -r '.name' project.yaml)  > bibliography.bib);";
 $out_dir = 'build';
