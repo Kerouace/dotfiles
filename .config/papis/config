@@ -1,5 +1,19 @@
 # vim: set ft=ini
 
+[settings]
+database-backend = papis
+use-cache = True
+default-library=papers
+file-browser = vifm
+add-edit = True
+add-open = True
+add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
+add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
+ref-format = {doc[author_list][0][family]}{doc[year]}
+extra-bibtex-keys = ["extra", "abstract"]
+extra-bibtex-types = ["thesis"]
+bibtex-unicode = True
+
 [tui]
 editmode = vi
 options_list.unselected_margin_style =
@@ -12,19 +26,3 @@ opentool = zathura
 dir = ~/sync/bibliography/books
 opentool = zathura
 
-[settings]
-default-library=papers
-file-browser = vifm
-
-add-edit = True
-add-open = True
-add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
-add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
-
-ref-format = {doc[author_list][0][family]}{doc[year]}
-use-cache = False
-
-extra-bibtex-keys = ["extra", "abstract"]
-extra-bibtex-types = ["thesis"]
-
-bibtex-unicode = True
