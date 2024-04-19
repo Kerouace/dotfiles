@@ -84,10 +84,19 @@ id-case = "lower"
 paths = ["journal/daily"]
 
 [group.daily.note]
-# %Y-%m-%d is actually the default format, so you could use {{format-date now}} instead.
+# %Y-%m-%d is actually the default format.
 filename = "{{format-date now}}"
 extension = "md"
 template = "daily.md"
+
+[group.meeting]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/meeting"]
+
+[group.meeting.note]
+filename = "{{format-date now}}-{{slug title}}"
+extension = "md"
+template = "meeting.md"
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -178,8 +187,13 @@ dead-link = "error"
 #     * you can pipe commands together with the usual | character
 #
 [alias]
+#Create a note from a free title
+nt = 'zk new --title "$*"'
+
 # Here are a few aliases to get you started.
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
+
+meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*"'
 
 # Shortcut to a command.
 #ls = "zk list $@"
