@@ -1,7 +1,7 @@
 ---
 title: {{format-date now "long"}}
 date: {{format-date now}}
-tags: []
+tags: [todo]
 ---
 
 # {{format-date now "long"}}
