@@ -218,5 +218,14 @@ lucky = "zk list --quiet --format full --sort random --limit 1"
 # save = 'git add . && git commit -m "$*"'
 # ```
 
+# Show a random orphan.
+random-orphan = '$EDITOR $(zk list --orphan --format path --sort random -n1 -x d -x g)'
+
 # Edit this configuration file.
 conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
+
+# Edit this gobal configuration file.
+gconf = '$EDITOR "$XDG_CONFIG_HOME/zk/config.toml"'
+
+# Delete a node
+delete = 'zk list --interactive --quiet --format "{{abs-path}}" --delimiter0 $@ | xargs -0 rm -vf --'
