@@ -1,10 +1,10 @@
 ---
-title: {{format-date now "long"}}
+title: {{format-date now}}
 date: {{format-date now}}
 tags: [todo]
 ---
 
-# {{format-date now "long"}}
+# {{format-date now}}
 
 ## What did I do today?
 

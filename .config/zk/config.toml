@@ -98,6 +98,15 @@ filename = "{{format-date now}}-{{slug title}}"
 extension = "md"
 template = "meeting.md"
 
+[group.infrastructure]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["wiki/infrastructure"]
+
+[group.infrastructure.note]
+filename = "{{id}}"
+extension = "md"
+template = "infrastructure.md"
+
 # MARKDOWN SETTINGS
 [format.markdown]
 
@@ -194,6 +203,8 @@ nt = 'zk new --title "$*"'
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
 
 meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*"'
+
+infrastructure = 'zk new "$ZK_NOTEBOOK_DIR/wiki/infrastructure" --title "$*"'
 
 # Shortcut to a command.
 #ls = "zk list $@"
