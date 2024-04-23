@@ -98,6 +98,25 @@ filename = "{{format-date now}}-{{slug title}}"
 extension = "md"
 template = "meeting.md"
 
+[group.individual]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/meeting"]
+
+[group.individual.note]
+filename = "{{format-date now}}-individual-meeting"
+extension = "md"
+template = "individual.md"
+
+
+[group.coordination]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/meeting"]
+
+[group.coordination.note]
+filename = "{{format-date now}}-coordination-meeting-{{slug title}}"
+extension = "md"
+template = "coordination.md"
+
 [group.infrastructure]
 # Directories listed here will automatically use this group when creating notes.
 paths = ["wiki/infrastructure"]
@@ -204,7 +223,11 @@ daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
 
 meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*"'
 
+coordination = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group coordination'
+individual = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group individual'
+
 infrastructure = 'zk new "$ZK_NOTEBOOK_DIR/wiki/infrastructure" --title "$*"'
+
 
 # Shortcut to a command.
 #ls = "zk list $@"
