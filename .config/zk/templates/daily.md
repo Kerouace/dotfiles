@@ -1,12 +1,13 @@
 ---
 title: {{format-date now}}
 date: {{format-date now}}
-tags: [todo]
+tags: [todo, daily]
+lang: en-US
 ---
 
 # {{format-date now}}
 
-## What did I do today?
+## What have I done today?
 
 
 ## Open Questions.
