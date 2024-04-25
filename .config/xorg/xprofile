@@ -16,5 +16,6 @@ $STATUSBAR &                                # for refreshing the statusbar
 syncthing &
 discord &
 keepassxc &
+ucware-client &
 autorandr -c &                              # select monitor configuration
 (sleep 10 ; pkill -RTMIN+4 $STATUSBAR) &    # reload volume section of statusbar
