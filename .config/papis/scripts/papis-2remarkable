@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+# papis-short-help: Upload a given file to my remarkable 2
+
+folder_name=/tmp/out
+
+papis -l ${PAPIS_LIB} export --folder --out ${folder_name}
+rmapi put "${folder_name}"/*.pdf /Work

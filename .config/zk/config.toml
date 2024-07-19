@@ -89,6 +89,17 @@ filename = "{{format-date now}}"
 extension = "md"
 template = "daily.md"
 
+
+[group.weekly]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/weekly"]
+
+[group.weekly.note]
+# %Y-%m-%d is actually the default format.
+filename = "{{format-date (date 'last week')}}-weekly"
+extension = "md"
+template = "weekly.md"
+
 [group.meeting]
 # Directories listed here will automatically use this group when creating notes.
 paths = ["journal/meeting"]
@@ -220,6 +231,7 @@ nt = 'zk new --title "$*"'
 
 # Here are a few aliases to get you started.
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
+weekly = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/weekly"'
 
 meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group meeting'
 
