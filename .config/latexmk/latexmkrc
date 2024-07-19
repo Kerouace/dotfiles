@@ -1,6 +1,6 @@
 #$compiling_cmd = "\$(papis export --all --format bibtex project:\$(yq -r '.name' project.yaml)  > bib/bibliography.bib);";
 $aux_dir = 'build';
-$pdf_mode = 5;
+$pdf_mode = 4;
 ## taken from overleaf https://www.overleaf.com/learn/how-to/How_does_Overleaf_compile_my_project%3F
 $bibtex_use = 2;
 $go_mode = 3;
