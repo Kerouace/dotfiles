@@ -2,8 +2,8 @@
 
 # Taken from https://askubuntu.com/questions/839161/limit-a-graphics-tablet-to-one-monitor
 #Change DVI-I-1 to what monitor you want from running command: xrandr
-MONITOR="DP-1-1"
-PEN_NAME='UGTABLET 10 inch PenTablet Pen Pen (0)'
+MONITOR="DisplayPort-4"
+PEN_NAME='UGTABLET 10 inch PenTablet Pen (0)'
 
 #undo
 # xsetwacom --set "$PAD_NAME" Button 1 "key +ctrl +z -z -ctrl"

@@ -221,7 +221,7 @@ nt = 'zk new --title "$*"'
 # Here are a few aliases to get you started.
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
 
-meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*"'
+meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group meeting'
 
 coordination = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group coordination'
 individual = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group individual'
