@@ -14,25 +14,6 @@ for command in mount umount pacman shutdown poweroff reboot ; do
 done; unset command
 
 
-# Verbosity and settings that you pretty much just always are going to want.
-alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
-	bc="bc -ql" \
-	rsync="rsync -vrPlu" \
-	mkd="mkdir -pv" \
-	mkdir="mkdir -pv" \
-	ffmpeg="ffmpeg -hide_banner" \
-	sc="sc-im"
-
-# Colorize commands when possible.
-alias \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi" \
-	ip="ip -color=auto"
-
 # These common commands are just too long! Abbreviate them.
 alias \
 	ka="killall" \
@@ -43,32 +24,9 @@ alias \
 	p="pacman" \
 	z="zathura" \
 	c="clear" \
-	g="git" \
-    config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
+    	config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
 
-# cd
-alias \
-	".."="cd .." \
-	"..."="cd ../.." \
-	"...."="cd ../../.." \
-	"....."="cd ../../../.." \
-	"dockervol"="cd /var/lib/docker/volumes" \
-	prev='cd ../"$(ls -F .. | grep '/' | grep -B1 -xF "${PWD##*/}/" | head -n 1)"' \
-	next='cd ../"$(ls -F .. | grep '/' | grep -A1 -xF "${PWD##*/}/" | tail -n 1)"'
 
-# dragon-drop
-alias \
-	drag="dragon-drop" \
-	drop="dragon-drop --target"
-
-# eza -> l(a/l/h), tree
-alias \
-	l="eza --color=auto --group-directories-first" \
-	ls="ls -hN --color=auto --group-directories-first" \
-	la="eza -la --color=auto --group-directories-first" \
-	ll="eza -l --color=auto --group-directories-first" \
-	lh="eza -ld .?*" \
-	tree="eza --tree"
 
 # get & set clipboar
 alias \
@@ -101,3 +59,44 @@ alias \
     # gtkw="gtkwave -r XDG_CONFIG_HOME/gtkwave/.gtkwaverc"
 
 	# weath="less -S ${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport" \
+	
+
+
+
+
+
+
+# eza -> l(a/l/h), tree
+alias \
+	l="eza --color=auto --group-directories-first" \
+	ls="ls -hN --color=auto --group-directories-first" \
+	la="eza -la --color=auto --group-directories-first" \
+	ll="eza -l --color=auto --group-directories-first" \
+	lh="eza -ld .?*" \
+	tree="eza --tree"
+
+
+# Colorize commands when possible.
+alias \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
+
+# Verbosity and settings that you pretty much just always are going to want.
+#alias \
+#	cp="cp -iv" \
+#	mv="mv -iv" \
+#	rm="rm -vI" \
+#	bc="bc -ql" \
+#	rsync="rsync -vrPlu" \
+#	mkd="mkdir -pv" \
+#	mkdir="mkdir -pv" \
+#	ffmpeg="ffmpeg -hide_banner" \
+#	sc="sc-im"
+
+# dragon-drop
+alias \
+	drag="dragon-drop" \
+	drop="dragon-drop --target"

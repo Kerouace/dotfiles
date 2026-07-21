@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+# papis-short-help: Get path of the paper
+
+# Function to convert the path to point to the document and not only to the folder of the dochument
+convert_path() {
+    # Get the full path
+    local full_path="$1"
+
+    # Extract the base name of the last folder
+    local base_name=$(basename "$full_path")
+
+    # Extract the directory name (path without the last folder)
+    local dir_name=$(dirname "$full_path")
+
+    # Create the new path
+    local new_path="${dir_name}/${base_name}/${base_name}.pdf"
+
+    # Notify the user
+    echo "$new_path"
+}
+
+folder_path=$(papis -l ${PAPIS_LIB} list | sed "s|$BIBLIOGRAPHY|\$BIBLIOGRAPHY|")
+
+wl-copy $(convert_path $folder_path)
+
+

@@ -1,39 +1,13 @@
-# Disable ctrl-s and ctrl-q.
-stty -ixon
+#
+# Helper Functions
+#
+zle-line-init() {
+	zle -K viins
+	echo -ne "\e[5 q"
+}
 
-setopt autocd autopushd \
-
-# Enable autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^ ' autosuggest-accept
-
-# Enable colors and change prompt
-autoload -U colors && colors
-
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-bindkey -M menuselect '^ ' autosuggest-accept
-zstyle ':autocomplete:*' list-lines 100
-zstyle ':autocomplete:*' widget-style menu-select
-zle -A {.,}history-incremental-search-forward
-zle -A {.,}history-incremental-search-backward
-zstyle ':autocomplete:*' fzf-completion yes
-zstyle ':autocomplete:*' recent-dirs zsh-z
-zstyle ':autocomplete:*' menu select
-zstyle ':autocomplete:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # Case insensitive completion
-zstyle ':autocomplete:*' insert-unambiguous yes
-
-# Enable vi mode
-bindkey -v
-export KEYTIMEOUT=1
-# Vim bindings in tab mode
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 # Vim Cursor shape
+# This could be archived with oh-my-zsh
 function zle-keymap-select {
 	if [[ ${KEYMAP} == vicmd ]] ||
 	   [[ $1 = 'block' ]]; then
@@ -44,14 +18,6 @@ function zle-keymap-select {
 	  echo -ne '\e[5 q'
 	fi
 }
-zle -N zle-keymap-select
-zle-line-init() {
-	zle -K viins
-	echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q'
-preexec() { echo -ne '\e[5 q' ;}
 
 # Vim copy and paste fix in terminal
 function x11-clip-wrap-widgets() {
@@ -77,7 +43,6 @@ function x11-clip-wrap-widgets() {
     done
 }
 
-
 local copy_widgets=(
     vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
 )
@@ -85,31 +50,132 @@ local paste_widgets=(
     vi-put-{before,after}
 )
 
-# NB: can atm. only wrap native widgets
+
+#
+# Style
+#
+
+# Set style for completion options
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # Case insensitive completion
+zmodload zsh/complist
+_comp_options+=(globdots)
+
+# Disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# Set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# Set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# Switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+# Set default Vim Cursor shape
+zle -N zle-keymap-select
+zle -N zle-line-init
+echo -ne '\e[5 q'
+
+# Copy to x11 clipboard
 x11-clip-wrap-widgets copy $copy_widgets
 x11-clip-wrap-widgets paste  $paste_widgets
 
 
+# Enable colors
+autoload -U colors && colors
 
-[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source "$XDG_CONFIG_HOME/shell/aliasrc" # Load aliases
+#
+# Keybindings
+#
 
-[ -f "$XDG_CONFIG_HOME/shell/functionrc" ] && source "$XDG_CONFIG_HOME/shell/functionrc"
+# Enable vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
-[ -f "$XDG_CONFIG_HOME/shell/suffixaliasrc" ] && source "$XDG_CONFIG_HOME/shell/suffixaliasrc"
+# Vim bindings in tab mode
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
-eval "$(starship init zsh)"
+#
+# Additional Features
+#
 
-# Load command-not-found-handler
-source /usr/share/doc/pkgfile/command-not-found.zsh
+# Load alias
+#[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source "$XDG_CONFIG_HOME/shell/aliasrc" # Load aliases
+
+# Load functions
+#[ -f "$XDG_CONFIG_HOME/shell/functionrc" ] && source "$XDG_CONFIG_HOME/shell/functionrc"
+
+# Load functions
+#[ -f "$XDG_CONFIG_HOME/shell/suffixaliasrc" ] && source "$XDG_CONFIG_HOME/shell/suffixaliasrc"
+
+# Disable ctrl-s and ctrl-q.
+stty -ixon
+
+setopt autocd autopushd \
+
+# Plugin: command-not-found-handler
+#source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# Plugin: fuzzy completion
+#source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
+
+# Enable compinit
+autoload -Uz compinit && compinit
+
+# Enable autosuggestions
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
 
 # Load fast-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+#source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+#preexec() { echo -ne '\e[5 q' ;}
+
+#eval "$(starship init zsh)"
+
+# starting commands in background
+function background() {
+  for ((i=2;i<=$#;i++)); do; ${@[1]} ${@[$i]} &> /dev/null &| ; done
+}
+
+# fzf
+function src() {
+  find ~/.config/* ~/.local/bin/* -type f | fzf | xargs -r $EDITOR ;
+}
+
+function srd() {
+  find ~/sync/* -type f | grep ".pdf" | fzf | xargs -r $READER ;
+}
 
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     tmux attack-session -t $USER || tmux new-session -s $USER
 fi
 
-# set up thefuck
-eval $(thefuck --alias)
+ # Define the function in the custom configuration
+function dirhashes() {
+  echo "Available directory hashes:"
+  echo "~conf: nixos configuration"
+  echo "~orga: organizational stuf and documents (work)"
+  echo "~temp: templates"
+  echo "~rese: research"
+  echo "~tool: tools"
+  echo "~expr: experiments"
+}
 
-pfetch
+function cl() {
+      cd "$@" && eza -la --color=auto --group-directories-first
+}
+
+alias -s pdf="background zathura"
+
+# set up thefuck
+# eval $(thefuck --alias)
+
+eval "$(direnv hook zsh)"
+

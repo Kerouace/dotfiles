@@ -1,0 +1,31 @@
+#! /usr/bin/env bash
+# papis-short-help: Copy a selected reference as a one-line plaintext citation to the clipboard
+#
+# Opens papis' picker (honouring any query given as arguments), formats the
+# selected reference(s) as a plain one-line citation, and copies it to the
+# Wayland clipboard via wl-copy.
+#
+#   papis cite                 # pick from the whole library
+#   papis cite masking 2017    # pre-filter, then pick
+
+set -eo pipefail
+
+fmt='{doc[author]} ({doc[year]}). {doc[title]}. {doc[journal]}.'
+
+# Honour PAPIS_LIB if set (like the other scripts here); otherwise fall back to
+# the default library from the papis config.
+lib_args=()
+[ -n "$PAPIS_LIB" ] && lib_args=(-l "$PAPIS_LIB")
+
+citation=$(papis "${lib_args[@]}" list --format "$fmt" "$@")
+
+if [ -z "$citation" ]; then
+    echo "papis-cite: no reference selected" >&2
+    exit 1
+fi
+
+# printf (not echo) so no trailing newline lands in the clipboard.
+printf '%s' "$citation" | wl-copy
+
+echo "Copied to clipboard:"
+echo "$citation"

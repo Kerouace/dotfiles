@@ -128,6 +128,27 @@ filename = "{{format-date now}}-coordination-meeting-{{slug title}}"
 extension = "md"
 template = "coordination.md"
 
+[group.colloquium]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/colloquium"]
+
+[group.colloquium.note]
+# %Y-%m-%d is actually the default format.
+filename = "{{format-date now}}-colloquium"
+extension = "md"
+template = "colloquium.md"
+
+
+[group.lunchtalk]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/lunchtalk"]
+
+[group.lunchtalk.note]
+# %Y-%m-%d is actually the default format.
+filename = "{{format-date now}}-lunchtalk"
+extension = "md"
+template = "lunchtalk.md"
+
 [group.infrastructure]
 # Directories listed here will automatically use this group when creating notes.
 paths = ["wiki/infrastructure"]
@@ -164,7 +185,7 @@ multiword-tags = false
 
 # Default editor used to open notes. When not set, the EDITOR or VISUAL
 # environment variables are used.
-#editor = "vim"
+editor = "vim"
 
 # Pager used to scroll through long output. If you want to disable paging
 # altogether, set it to an empty string "".
@@ -237,6 +258,9 @@ meeting = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group meetin
 
 coordination = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group coordination'
 individual = 'zk new "$ZK_NOTEBOOK_DIR/journal/meeting" --title "$*" --group individual'
+
+colloquium = 'zk new "$ZK_NOTEBOOK_DIR/journal/colloquium" --title "$*" --group colloquium'
+lunchtalk = 'zk new "$ZK_NOTEBOOK_DIR/journal/lunchtalk" --title "$*" --group lunchtalk'
 
 infrastructure = 'zk new "$ZK_NOTEBOOK_DIR/wiki/infrastructure" --title "$*"'
 

@@ -1,4 +1,3 @@
-# vim: set ft=ini
 
 [settings]
 database-backend = papis
@@ -9,10 +8,11 @@ add-edit = True
 add-open = True
 add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
 add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
-ref-format = {doc[author_list][0][family]}{doc[year]}
+ref-format = {doc[author_list][0][family]}{doc[year]}{doc[month]}
 extra-bibtex-keys = ["extra", "abstract"]
 extra-bibtex-types = ["thesis"]
 bibtex-unicode = True
+
 
 [tui]
 editmode = vi
