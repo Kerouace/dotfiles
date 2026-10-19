@@ -277,6 +277,15 @@ lunchtalk = 'zk new "$ZK_NOTEBOOK_DIR/journal/lunchtalk" --title "$*" --group lu
 
 infrastructure = 'zk new "$ZK_NOTEBOOK_DIR/wiki/infrastructure" --title "$*"'
 
+# The Backlog (one long-lived note): `zk backlog` opens it, `zk backlog text`
+# appends "- text" (dotfiles-nixos backlog/ captures from Sway with this).
+backlog = '''
+f="$ZK_NOTEBOOK_DIR/backlog.md"
+if [ $# -eq 0 ]; then exec ${EDITOR:-nvim} "$f"; fi
+if [ -s "$f" ] && [ -n "$(tail -c 1 "$f")" ]; then echo >> "$f"; fi
+printf -- '- %s\n' "$*" >> "$f"
+'''
+
 
 # Shortcut to a command.
 #ls = "zk list $@"
