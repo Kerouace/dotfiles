@@ -158,6 +158,17 @@ filename = "{{id}}"
 extension = "md"
 template = "infrastructure.md"
 
+[group.literature]
+# Literature notes: one per Reference, created by `papis-action literature`
+# (dotfiles-nixos papis/), which passes the Reference via --extra (comma-free
+# values) and CUSTOM_LITERATURE_* environment variables (authors, DOI, URL).
+paths = ["literature"]
+
+[group.literature.note]
+filename = "{{extra.key}}"
+extension = "md"
+template = "literature.md"
+
 # MARKDOWN SETTINGS
 [format.markdown]
 
