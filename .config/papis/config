@@ -13,6 +13,15 @@ extra-bibtex-keys = ["extra", "abstract"]
 extra-bibtex-types = ["thesis"]
 bibtex-unicode = True
 
+# --- library history and checks (wayfinder: Groundwork) ----------------------
+# Every papis change is a git commit in the library repo (PDFs are gitignored).
+use-git = True
+# Duplicate detection on add; papis_id first so bib entries still match by id.
+unique-document-keys = ["papis_id", "doi", "isbn", "url"]
+# papis doctor: duplicated refs and DOIs, and References without a PDF.
+doctor-duplicated-keys-keys = ["ref", "doi"]
+doctor-keys-missing-keys = ["title", "author", "author_list", "ref", "files"]
+
 # --- fzf picker -------------------------------------------------------------
 # Use fzf as the picker so we can add custom key bindings. Each entry fed to
 # fzf is three "@@"-separated fields (@@ chosen because it never occurs in
