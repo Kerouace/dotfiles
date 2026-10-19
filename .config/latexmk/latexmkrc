@@ -1,4 +1,11 @@
-#$compiling_cmd = "\$(papis export --all --format bibtex project:\$(yq -r '.name' project.yaml)  > bib/bibliography.bib);";
+# A LaTeX project with project.yaml (`name: X`): append the project's missing
+# References to bib/bibliography.bib before each run, and warn about
+# duplicates (papis-bib, dotfiles-nixos papis/). Without papis (Overleaf,
+# coauthors) the committed .bib is used as is. A plain system() call, since
+# latexmk only runs $compiling_cmd under -pvc.
+if (-e 'project.yaml' && system('command -v papis-bib >/dev/null 2>&1') == 0) {
+  system('papis-bib append');
+}
 $aux_dir = 'build';
 $pdf_mode = 4;
 ## taken from overleaf https://www.overleaf.com/learn/how-to/How_does_Overleaf_compile_my_project%3F
