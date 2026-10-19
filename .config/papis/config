@@ -10,7 +10,9 @@ add-folder-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
 add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
 ref-format = {doc[author_list][0][family]}{doc[year]}{doc[month]}
 # papis_id marks a LaTeX project's .bib entries as papis-owned (papis-bib)
-extra-bibtex-keys = ["extra", "abstract", "papis_id"]
+extra-bibtex-keys = ["extra", "papis_id"]
+# abstracts stay in info.yaml but clutter .bib files
+bibtex-ignore-keys = ["abstract"]
 extra-bibtex-types = ["thesis"]
 bibtex-unicode = True
 
