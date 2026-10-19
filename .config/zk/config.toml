@@ -185,7 +185,9 @@ multiword-tags = false
 
 # Default editor used to open notes. When not set, the EDITOR or VISUAL
 # environment variables are used.
-editor = "vim"
+# NB: use "nvim" explicitly — "vim" now resolves to system vim since we stopped
+# using home-manager's programs.neovim (which used to alias vim -> nvim).
+editor = "nvim"
 
 # Pager used to scroll through long output. If you want to disable paging
 # altogether, set it to an empty string "".

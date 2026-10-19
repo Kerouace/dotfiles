@@ -13,6 +13,26 @@ extra-bibtex-keys = ["extra", "abstract"]
 extra-bibtex-types = ["thesis"]
 bibtex-unicode = True
 
+# --- fzf picker -------------------------------------------------------------
+# Use fzf as the picker so we can add custom key bindings. Each entry fed to
+# fzf is three "@@"-separated fields (@@ chosen because it never occurs in
+# bibliographic data and, unlike a literal tab, survives editing):
+#   1: a plain one-line citation  -> copied by Ctrl+Y
+#   2: the papis_id               -> used to look the doc up for the preview
+#   3: the coloured display       -> the only field shown / searched
+picktool = fzf
+fzf-header-format = {doc[author]} ({doc[year]}). {doc[title]}. {doc[journal]}.@@{doc[papis_id]}@@{c.Fore.MAGENTA}{doc[title]:<70.70}{c.Style.RESET_ALL} :: {c.Fore.CYAN}{doc[author]:<20.20}{c.Style.RESET_ALL} {c.Fore.YELLOW}«{doc[year]:4}»{c.Style.RESET_ALL} {c.Fore.GREEN}{doc[tags]}{c.Style.RESET_ALL}
+# NB: literal '%' must be doubled ('%%') — papis' configparser treats a single
+# '%' as interpolation syntax.
+# --with-nth restricts BOTH what is displayed and what is searched to field 3,
+# so no separate --nth is needed (adding one would look for a 3rd field inside
+# the already-collapsed display and match nothing).
+fzf-extra-flags = ["--ansi", "--multi", "-i", "--delimiter", "@@", "--with-nth", "3..", "--preview", "$HOME/.config/papis/scripts/papis-fzf-preview {2}", "--preview-window", "bottom:40%%:wrap", "--header", "Ctrl-Y copy · Ctrl-E edit · Ctrl-B browse · Ctrl-Q notes · ? help"]
+# Ctrl+Y: copy the one-line citation (field 1) to the clipboard.
+# (Enter=open, Ctrl+E=edit info.yaml, Ctrl+O=open, Ctrl+B=browse are built in.)
+fzf-extra-bindings = ["ctrl-s:jump", "ctrl-y:execute-silent(printf %%s {1} | wl-copy && notify-send -t 2000 'Citation copied' {1})", "?:preview($HOME/.config/papis/scripts/papis-fzf-help)"]
+# ----------------------------------------------------------------------------
+
 
 [tui]
 editmode = vi

@@ -27,5 +27,8 @@ fi
 # printf (not echo) so no trailing newline lands in the clipboard.
 printf '%s' "$citation" | wl-copy
 
+# Desktop notification (mako); no-op if notify-send is unavailable.
+command -v notify-send >/dev/null 2>&1 && notify-send -t 2000 "Citation copied" "$citation"
+
 echo "Copied to clipboard:"
 echo "$citation"

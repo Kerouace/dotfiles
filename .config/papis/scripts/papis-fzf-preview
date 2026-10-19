@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+# papis-short-help: Metadata card for a papis_id (used as the fzf --preview in the picker)
+#
+# Called by the fzf picker's --preview with the highlighted document's papis_id.
+# Prints a readable metadata card for that document. Tags are stored as a python
+# list (e.g. ['a', 'b']); the trailing sed strips the brackets/quotes on the
+# Tags line only, leaving the (possibly multi-line) abstract untouched.
+
+[ -z "$1" ] && exit 0
+
+papis list --all "papis_id:$1" --format 'Author:   {doc[author]}
+Title:    {doc[title]}
+Year:     {doc[year]}
+Journal:  {doc[journal]}
+Type:     {doc[type]}
+DOI:      {doc[doi]}
+Tags:     {doc[tags]}
+
+Abstract:
+{doc[abstract]}' | sed "/^Tags:/ s/[][']//g"

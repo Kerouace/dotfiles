@@ -43,6 +43,30 @@ function x11-clip-wrap-widgets() {
     done
 }
 
+# Vim copy and paste fix in terminal
+function wld-clip-wrap-widgets() {
+    local copy_or_paste=$1
+    shift
+    for widget in $@; do
+        if [[ $copy_or_paste == "copy" ]]; then
+            eval "
+            function _wld-clip-wrapped-$widget() {
+                zle .$widget
+                wl-copy <<<\$CUTBUFFER
+            }
+            "
+        else
+            eval "
+            function _wld-clip-wrapped-$widget() {
+                CUTBUFFER=\$(wl-paste)
+                zle .$widget
+            }
+            "
+        fi
+        zle -N $widget _wld-clip-wrapped-$widget
+    done
+}
+
 local copy_widgets=(
     vi-yank vi-yank-eol vi-delete vi-backward-kill-word vi-change-whole-line
 )
@@ -77,9 +101,9 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 echo -ne '\e[5 q'
 
-# Copy to x11 clipboard
-x11-clip-wrap-widgets copy $copy_widgets
-x11-clip-wrap-widgets paste  $paste_widgets
+# Copy to wayland clipboard
+wld-clip-wrap-widgets copy $copy_widgets
+wld-clip-wrap-widgets paste  $paste_widgets
 
 
 # Enable colors
@@ -161,7 +185,8 @@ fi
 function dirhashes() {
   echo "Available directory hashes:"
   echo "~conf: nixos configuration"
-  echo "~orga: organizational stuf and documents (work)"
+  echo "~work: organizational stuf and documents (work)"
+  echo "~teac: teaching (work)"
   echo "~temp: templates"
   echo "~rese: research"
   echo "~tool: tools"
@@ -173,6 +198,7 @@ function cl() {
 }
 
 alias -s pdf="background zathura"
+alias -s xpr="background vivado" # for this vivado must be installed
 
 # set up thefuck
 # eval $(thefuck --alias)
