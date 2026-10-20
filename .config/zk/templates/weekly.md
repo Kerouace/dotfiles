@@ -13,3 +13,6 @@ lang: en-US
 
 ## Dailies
 
+## Review
+
+{{sh "weekly-review"}}
